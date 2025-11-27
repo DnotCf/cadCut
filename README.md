@@ -1,20 +1,71 @@
-<div align="center">
-<img width="1200" height="475" alt="GHBanner" src="https://github.com/user-attachments/assets/0aa67016-6eaf-458a-adb2-6e31a0763ed6" />
-</div>
+# CAD Cropper Pro
 
-# Run and deploy your AI Studio app
+A professional tool to crop CAD files using WKT geometry strings, powered by Google Gemini for geometry validation and React for the frontend.
 
-This contains everything you need to run your app locally.
+## Prerequisites
 
-View your app in AI Studio: https://ai.studio/apps/drive/1-DNAe9DUbH5FEYTiavbT7iCswKsmN09r
+- **Node.js**: v18 or higher
+- **Docker** (optional, for containerized deployment)
+- **Google Gemini API Key**: Required for WKT validation features.
 
-## Run Locally
+## Local Development
 
-**Prerequisites:**  Node.js
+1. **Install Dependencies**
+   ```bash
+   npm install
+   ```
 
+2. **Setup Environment**
+   Create a `.env` file in the root directory:
+   ```env
+   API_KEY=your_google_gemini_api_key_here
+   ```
 
-1. Install dependencies:
-   `npm install`
-2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
-3. Run the app:
-   `npm run dev`
+3. **Start Development Server**
+   ```bash
+   npm run dev
+   ```
+   The app will be available at `http://localhost:5173`.
+
+## Production Build
+
+To build the application for production (optimizes code and generates static files):
+
+1. **Run Build Command**
+   ```bash
+   npm run build
+   ```
+   This will create a `dist/` directory containing the compiled HTML, CSS, and JavaScript.
+
+2. **Preview Production Build**
+   ```bash
+   npm run preview
+   ```
+
+## Docker Deployment
+
+To containerize the application for deployment on a server:
+
+1. **Build the Docker Image**
+   ```bash
+   docker build -t cad-cropper .
+   ```
+
+2. **Run the Container**
+   Map port 80 of the container to port 80 (or any other port) on your host.
+   
+   *Using an .env file:*
+   ```bash
+   docker run -d -p 80:80 --env-file .env cad-cropper
+   ```
+
+   *Passing API Key directly:*
+   ```bash
+   docker run -d -p 80:80 -e API_KEY=your_key_here cad-cropper
+   ```
+
+## Project Structure
+
+- **src/components**: UI Components (FileUpload, WktInput, ProgressBar)
+- **src/services**: Logic for DXF processing and Gemini API interaction
+- **dist/**: Production artifacts (created after build)
