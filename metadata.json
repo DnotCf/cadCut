@@ -1,0 +1,5 @@
+{
+  "name": "CAD-Cropper-Pro",
+  "description": "A professional tool to crop CAD files using WKT geometry strings, powered by Gemini for geometry validation.",
+  "requestFramePermissions": []
+}
